@@ -10,6 +10,7 @@
     */
     let parentElement = document.getElementById('parent');
     let childElement = document.createElement('div');
+    parentElement.appendChild(childElement)
     // ENTER YOUR CODE HERE
 
     /*
@@ -17,6 +18,7 @@
     */
     let parentElement2 = document.getElementById('parent');
     let childElement2 = document.createElement('div');
+    parentElement2.prepend(childElement2);
     // ENTER YOUR CODE HERE
 
     /*
@@ -26,6 +28,8 @@
     let childElement3a = document.createElement('div');
     let childElement3b = document.createElement('div');
     let childElement3c = document.createElement('div');
+    parentElement3.appendChild(childElement3a, childElement3b, childElement3c);
+    console.log(parentElement3);
     // ENTER YOUR CODE HERE
 
     /*
@@ -33,14 +37,17 @@
     */
     let parentElement4 = document.getElementById('parent');
     let childElement4 = document.createElement('div');
+    let firstChild = parentElement4.firstChild;
+    parentElement4.insertBefore(childElement4, firstChild.nextSibling)
     // ENTER YOUR CODE HERE
 
     /*
     PROBLEM 5 (Debugging): Find and fix the error in the code snippet below. The goal is to place childElement5 at the beginning of parentElement5.
     */
-    // let parentElement5 = document.getElementById('parent');
-    // let childElement5 = document.createElement('div');
-    // parentElement5.appendChild(childElement5);
+    let parentElement5 = document.getElementById('parent');
+    let childElement5 = document.createElement('div');
+    childElement5.textContent = 'test';
+    parentElement5.prepend(childElement5);
   </script>
 </body>
 
