@@ -33,6 +33,17 @@
         const { id, nodeName } = evt.currentTarget
         console.log(`Event handler firing at ${id} (${nodeName})`)
         // ADD YOUR CODE HERE FOR PROBLEMS 1, 2, 3
+        if (evt.target === button1) {
+          evt.stopPropagation();
+        }
+
+        if (evt.target === button2 && evt.currentTarget === div) {
+          evt.stopPropagation();
+        }
+
+        if (evt.target === button3 && evt.currentTarget === section) {
+          evt.stopPropagation();
+        }
       })
     })
 

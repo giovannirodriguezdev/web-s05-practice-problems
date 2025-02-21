@@ -12,18 +12,45 @@
     Append the button to the element with the class "custom-buttons".
     */
     //ENTER YOUR CODE HERE
+    function createBtn (text) {
+      const newBtn = document.createElement("button");
+      newBtn.className = "custom-btn";
+      newBtn.textContent = text;
+      
+      return newBtn
+    }
+    const buttonDiv = document.querySelector(".custom-buttons");
+    const btn1 = createBtn("Click Me");
+    buttonDiv.appendChild(btn1);
 
     /*
     PROBLEM 2: Style the component
     Style the button component from Problem 1 with a background color of red, white text color, and a padding of 10px.
     */
     //ENTER YOUR CODE HERE
+    const style = document.createElement("style");
+    style.textContent = `
+      .custom-btn {
+      background-color: red;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      margin: 10px;
+      }
+    `
+    document.head.appendChild(style);
 
     /*
     PROBLEM 3: Create multiple button components
     Use a loop to create five button components with the class "custom-btn" and display them inside the element with the class "custom-buttons".
     */
     //ENTER YOUR CODE HERE
+    for (let index = 1; index <= 5 ; index++) {
+      const button = createBtn(`Click Me ${index}`);
+      button.className = "custom-btn";
+      buttonDiv.appendChild(button);
+    }
 
     /*
     PROBLEM 4: Make the buttons interactive
@@ -31,15 +58,22 @@
     When a button is clicked, display an alert with the text "Button [button number] clicked!" (e.g., "Button 1 clicked!").
     */
     //ENTER YOUR CODE HERE
+    const buttons = document.querySelectorAll(".custom-btn");
+    buttons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        alert(`You Clicked on button ${index}`);
+      })
+    })
 
     /*
     PROBLEM 5 (DEBUGGING): Fix the button styles
     There is an issue with the button styles. The buttons should have a background color of blue and white text color.
     Identify and fix the problem in the code below:
     */
-    // const customBtn = document.querySelector('.custom-btn');
-    // customBtn.style.backgroundColor = 'blue';
-    // customBtn.style.color = 'white';
+    buttons.forEach(button => {
+      button.style.backgroundColor = "blue";
+      button.style.color = 'white';
+    })
   </script>
 </body>
 

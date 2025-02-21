@@ -9,6 +9,16 @@
     */
 
     //ENTER YOUR CODE HERE
+    function buttonMaker(text, string) {
+      const button = document.createElement("button");
+      button.addEventListener("click", () => {
+        console.log(string);
+      })
+      button.textContent = text;
+
+      return button;
+    }
+    document.body.appendChild(buttonMaker("Click Me!", "Button Clicked!"))
 
     /*
     PROBLEM 2: Write a function component called createCard that generates an HTML card element. The function should take three parameters: title (a string) representing the card title, description (a string) representing the card description, and imageUrl (a string) representing the URL of the image to be displayed in the card. Once you write the function, call it with the following parameters:
@@ -17,12 +27,59 @@
     */
 
     //ENTER YOUR CODE HERE
+    function createCard(title, description, img) {
+      const container = document.createElement("div");
+      container.style.backgroundColor = "lightgrey";
+
+      const productTitle = document.createElement("h1");
+      productTitle.textContent = title;
+
+      const productDescription = document.createElement("p");
+      productDescription.textContent = description;
+
+      const productImg = document.createElement("img");
+      productImg.src = img;
+      productImg.style.width = "400px";
+      productImg.style.display = "flex";
+      productImg.style.justifySelf = "center";
+
+      container.appendChild(productTitle);
+      container.appendChild(productDescription);
+      container.appendChild(productImg);
+
+      document.body.appendChild(container);
+    }
+
+    createCard("Retro Game Console", "Rediscover the joy of gaming with the R36S Handheld Game Console—the perfect fusion of retro nostalgia and modern convenience.", "https://www.hype-tek.com/wp-content/uploads/2025/01/black-1.jpg")
 
     /*
     PROBLEM 3: Create a function component called toggleVisibility that toggles the visibility of an HTML element. The function should take the element's id as its only parameter. If the element is currently visible, the function should hide it; if it is hidden, the function should make it visible.
     */
 
     //ENTER YOUR CODE HERE
+    function toggleVisibility(elId) {
+      const element = document.getElementById(elId);
+      if (!element) return;
+
+      const currentDisplay = getComputedStyle(element).display;
+
+      element.style.display = currentDisplay === "none" ? "block" : "none";
+    }
+
+    const sampleElement = document.createElement('div');
+sampleElement.id = 'myElement';
+sampleElement.textContent = 'Click me to toggle!';
+sampleElement.style.padding = "10px";
+sampleElement.style.backgroundColor = "lightblue";
+sampleElement.style.textAlign = "center";
+sampleElement.style.cursor = "pointer";
+
+sampleElement.addEventListener("click", () => toggleVisibility("myElement"));
+document.body.appendChild(sampleElement);
+
+// Initially hide the element after 2 seconds
+setTimeout(() => toggleVisibility('myElement'), 2000);
+
 
     /*
     PROBLEM 4: Create a function component called createForm that creates a simple HTML form from the structure below. The function should take no parameters. The form should contain two input fields: one for the name (with the ID nameInput) and one for the email address (with the ID emailInput).
@@ -44,19 +101,71 @@
     */
 
     //ENTER YOUR CODE HERE
+    function createForm() {
+      const form = document.createElement("form");
 
+      const nameLabel = document.createElement("label");
+      nameLabel.textContent = "Name:";
+      nameLabel.setAttribute("for", "nameInput");
+
+      const nameInput = document.createElement("input");
+      nameInput.type = "text";
+      nameInput.id = "nameInput";
+
+      const emailLabel = document.createElement("label");
+      emailLabel.textContent = "Email";
+      emailLabel.setAttribute("for", "emailInput");
+
+      const emailInput = document.createElement("input");
+      emailInput.type = "email";
+      emailInput.id = "emailInput";
+
+      const submitButton = document.createElement("button");
+      submitButton.type = "submit";
+      submitButton.textContent = "Submit";
+
+      form.appendChild(nameLabel);
+      form.appendChild(nameInput);
+      form.appendChild(document.createElement("br"));
+      form.appendChild(emailLabel);
+      form.appendChild(emailInput);
+      form.appendChild(document.createElement("br"));
+      form.appendChild(submitButton);
+      
+      form.addEventListener("submit", submitForm)
+
+      document.body.appendChild(form);
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+
+      const nameValue = document.getElementById("nameInput").value.trim();
+      const emailValue = document.getElementById("emailInput").value.trim();
+
+      if (nameValue === "" || emailValue === "") {
+        alert("Please fill in both fields.");
+        return;
+      }
+      event.target.style.display = "none";
+    }
+
+    createForm();
     /*
      PROBLEM 5 (DEBUGGING): The following code is intended to change the background color of a paragraph when the mouse hovers over it. However, the background color does not change as expected when the code is executed. Identify and fix the bug to make the hover effect work correctly.
      */
 
-    const myParagraph = document.getElementById('myParagraph');
+    const myParagraph = document.createElement('p');
+    myParagraph.id = "myParagraph";
+    myParagraph.textContent = "Hover Over Me!";
+    document.body.appendChild(myParagraph);
 
     myParagraph.addEventListener('mouseover', function () {
-      myParagraph.classList.add('highlight');
+      myParagraph.style.backgroundColor = "lightyellow";
     });
 
     myParagraph.addEventListener('mouseout', function () {
-      myParagraph.classList.remove('highlight');
+      myParagraph.style.backgroundColor = "";
     });
 
   </script>
